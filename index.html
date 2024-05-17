@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMyPhoto.VIP - Photoshop Edits DEMO</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .carousel {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        button.prev {
+            left: 10px;
+        }
+
+        button.next {
+            right: 10px;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .carousel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="/docs/assets/image0.jpg" alt="Image 0">
+            <img src="/docs/assets/image1.jpg" alt="Image 1">
+            <img src="/docs/assets/image2.jpg" alt="Image 2">
+            <img src="/docs/assets/image3.jpg" alt="Image 3">
+            <img src="/docs/assets/image4.jpg" alt="Image 4">
+            <img src="/docs/assets/image5.jpg" alt="Image 5">
+            <img src="/docs/assets/image6.jpg" alt="Image 6">
+            <img src="/docs/assets/image7.jpg" alt="Image 7">
+            <img src="/docs/assets/image8.jpg" alt="Image 8">
+            <img src="/docs/assets/image9.jpg" alt="Image 9">
+        </div>
+        <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="next" onclick="moveCarousel(1)">&#10095;</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveCarousel(direction) {
+            const images = document.querySelector('.carousel-images');
+            const totalImages = images.children.length;
+            
+            currentIndex += direction;
+            
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            } else if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+
+            images.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
